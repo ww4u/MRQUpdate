@@ -36,6 +36,7 @@ namespace MegaRobo_Update
         private const int bootMaxLen = 6;
         private static bool restart; 
         // 主函数需要指定文件路径、MRH地址、设备的RecieveID
+        //! filePath ip_desc receiveId
         static void Main(string[] args)
         {
             // 参数为空
@@ -1191,16 +1192,17 @@ namespace MegaRobo_Update
                     if (result[i].Result[0] == main
                         && result[i].Result[1] == sub)
                     {
+                        //! check length
                         if (result[i].Result.Length == datasets.Length + 2 )
                         { }
                         else
                         { continue;  }
 
                         //! check the return
-                        for (int tmpK = 0; tmpK < datasets.Length - 2; tmpK++)
+                        for (int tmpK = 0; tmpK < datasets.Length; tmpK++)
                         {
                             if (result[i].Result[tmpK + 2] != datasets[tmpK])
-                            { continue; }
+                            { return false; }
                             else
                             { }
                         }
